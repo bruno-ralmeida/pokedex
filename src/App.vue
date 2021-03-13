@@ -7,22 +7,10 @@ export default {};
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
 * {
   margin: 0;
   padding: 0;
   border: 0;
-}
-body {
-  background: #ffffff;
-  background-image: linear-gradient(
-    220deg,
-    #ff0000,
-    #fb2020,
-    #ff8989,
-    #fefefe,
-    #fefefe
-  );
-  background-attachment: fixed;
- 
 }
 </style>

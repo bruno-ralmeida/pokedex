@@ -4,7 +4,11 @@
     <div class="pokemon__description">
       <h2>Pokémon</h2>
       <p>
-          Pokémon é uma série de jogos eletrônicos desenvolvidos pela Game Freak e publicados pela Nintendo como parte da franquia de mídia Pokémon. Lançado pela primeira vez em 1996 no Japão para o console Game Boy, a principal série de jogos de RPGs, que continuou em cada geração em portáteis da Nintendo.
+        Pokémon é uma série de jogos eletrônicos desenvolvidos pela Game Freak e
+        publicados pela Nintendo como parte da franquia de mídia Pokémon.
+        Lançado pela primeira vez em 1996 no Japão para o console Game Boy, a
+        principal série de jogos de RPGs, que continuou em cada geração em
+        portáteis da Nintendo.
       </p>
     </div>
     <div class="pokemon__image">
@@ -50,6 +54,7 @@ export default {
         .search(id)
         .then((res) => {
           this.mainPokemon = res;
+          console.log('==========')
           console.log(res);
         })
         .catch((err) => console.err(err));
@@ -59,6 +64,16 @@ export default {
 </script>
 
 <style>
+body {
+  background: #ffffff;
+  background: linear-gradient(
+    240deg,
+    #ff0000,
+    #d30000 50%,
+    #fefefe 50.1%
+  );
+  background-attachment: fixed;
+}
 .menu {
   grid-area: header;
 }
@@ -71,6 +86,9 @@ export default {
 
 .pokemon__image {
   grid-area: image;
+}
+.pokemon__image > span {
+  text-transform: capitalize;
 }
 
 .main {
@@ -85,16 +103,17 @@ export default {
     "description image";
 }
 
-.pokemon__description > h2, p {
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', sans-serif;
-    
+.pokemon__description > h2,
+p {
+  font-family: "Fredoka One", cursive;
 }
 .pokemon__description > h2 {
-    font-size: 36px;
+  font-size: 42px;
+  color: #ffdf0c;
+  text-shadow: #055cbeda -5px -2px;
 }
 
 .pokemon__description > p {
-    font-size: 24px;
+  font-size: 18px;
 }
-
 </style>>
