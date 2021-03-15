@@ -6,7 +6,7 @@ export default class PokemonService {
 
   list() {
     return this.axios
-      .get('?limit=1118&offset=0')
+      .get('?limit=649&offset=0')
       .then((res) => res.data)
       .catch((err) => {
         console.error(err);
@@ -16,14 +16,14 @@ export default class PokemonService {
       });
   }
 
-  search(id) {
+  search(idOrName) {
     return this.axios
-    .get(`/${id}`)
+    .get(`/${idOrName}`)
     .then((res) => res.data)
     .catch((err) => {
       console.error(err);
       throw new Error(
-        `Não foi possível obter informações sobre o Pokemon com ID: ${id}. Tente novamente mais tarde!`
+        `Não foi possível obter informações sobre o Pokemon com ID ou Nome: ${idOrName}. Tente novamente mais tarde!`
       );
     });
   }

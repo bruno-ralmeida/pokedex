@@ -2,7 +2,6 @@
   <nav>
     <img src="/static/images/logo.png" alt="Logo Pokémon" />
     <input
-      v-on:input="searchPokemon = $event.target.value"
       type="search"
       class="input_search"
       placeholder="Search"
@@ -12,21 +11,20 @@
 </template>
 
 <script>
-export default {
-  data(){
-    return {
-      searchPokemon: '',
-    }
-  },
-  
-};
+export default {};
 </script>
 
 <style scoped>
 nav {
+   background: #fefefe
+    linear-gradient(45deg, #fefefe 50%, #ff0000, #d30000 50.1%) no-repeat fixed;
   display: flex;
   justify-content: space-between;
-  margin: 1em .5em;
+  margin: 1em 0.5em;
+  position: sticky;
+  padding: .5em 0;
+  top: 0;
+  z-index: 100;
 }
 
 nav > img {
@@ -40,7 +38,7 @@ nav > input {
   width: 140px;
   transition: 0.2s ease-in;
   border: 1px solid #86868641;
-  padding: 0 .5em;
+  padding: 0 0.5em;
 }
 
 input:focus {

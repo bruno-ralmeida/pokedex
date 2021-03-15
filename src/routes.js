@@ -1,7 +1,7 @@
 import Home from './components/home/Home';
-import Detail from './components/detail/Detail';
+import Details from './components/details/Details';
 
 export const routes = [
   { path: '/', component: Home , name: 'home'},
-  { path: '/search', component: Detail, name: 'detail'}
+  { path: '/search', component: Details , name: 'detail'}
 ]
