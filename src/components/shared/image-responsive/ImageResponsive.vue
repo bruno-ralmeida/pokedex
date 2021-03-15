@@ -14,7 +14,7 @@ export default {
 .image_content {
   display: flex;
   flex-direction: column-reverse;
-  width: auto;
+  width: 100%;
   max-height: 85vh;
 }
 </style>

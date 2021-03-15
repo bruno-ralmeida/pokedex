@@ -17,7 +17,10 @@
     <div class="pokemon__image">
       <image-responsive :url="pokemon.imageURL" :title="pokemon.name" />
     </div>
-    <div class="pokemons__details" v-show="(filterName.trim())&& searchPokeName.length > 0">
+    <div
+      class="pokemons__details"
+      v-show="filterName.trim() && searchPokeName.length > 0"
+    >
       <pokemon-details :pokemons="searchPokeName" />
     </div>
   </div>
@@ -47,7 +50,13 @@ export default {
     this.pokemonService
       .list()
       .then((res) => {
-        this.pokemons = res;
+        this.pokemons = res.map((poke) => {
+          this.pokemonService.search(poke.id).then((res) => {
+            poke.types = res.types
+            return poke;
+          });
+          return poke;
+        });
         this.pokemonRandom();
       })
       .catch((err) => console.error(err));
@@ -56,18 +65,7 @@ export default {
     searchPokeName() {
       if (!this.filterName.trim() > 0) return [];
       let exp = new RegExp(this.filterName.trim(), "i");
-      const base = this.pokemons
-        .filter((pokemon) => exp.test(pokemon.name))
-        
-      return base.map(poke => {
-        this.pokemonService
-          .search(poke.id )
-          .then(res => {
-            poke.type = res.types[0].type.name 
-            return poke
-          })
-        return poke
-      })
+      return this.pokemons.filter((pokemon) => exp.test(pokemon.name));
     },
   },
   methods: {
