@@ -3,7 +3,7 @@
     <h2 class="detail_name">Result</h2>
     <div class="detail_main">
       <ul v-for="pokemon of pokemons" :key="pokemon.id">
-        <poke-card :name="pokemon.name" :url="pokemon.url" :id="pokemon.id" />
+        <poke-card :pokemon="pokemon" />
       </ul>
     </div>
   </div>
@@ -16,10 +16,11 @@ export default {
     "poke-card": Card,
   },
   props: ["pokemons"],
+
 };
 </script>
 
-<style scoped>
+<style>
 .detail {
   border-radius: 20px;
   display: flex;
@@ -30,7 +31,7 @@ export default {
   padding: 1.5em;
   align-items: center;
 }
-.detail_name {
+.h2 {
   font-family: "Fredoka One", cursive;
   font-size: 42px;
   color: #ffdf0c;

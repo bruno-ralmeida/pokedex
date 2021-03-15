@@ -1,13 +1,15 @@
 <template>
   <div class="card">
     <div class="card_image">
-      <poke-image :url="urlPokemonImage()" :title="name" />
+      <poke-image :url="pokemon.imageURL" :title="pokemon.name" />
     </div>
     <div class="card_name">
-      <span>{{ name }}</span>
+      <span> {{ pokemon.type }} </span> 
+      <span>|| </span>
+      <span>{{ pokemon.name }}</span>
     </div>
     <div class="card_url">
-      <!-- <a href="url"> Detalhes</a> -->
+      <button type="button"> Detalhes </button>
     </div>
   </div>
 </template>
@@ -15,26 +17,26 @@
 <script>
 import ImageResponsive from "../image-responsive/ImageResponsive";
 export default {
-  props: ["name", "url", "id"],
+  props: ["pokemon"],
   components: {
     "poke-image": ImageResponsive,
-  },
-  data() {
-    return {};
-  },
-  methods: {
-    urlPokemonImage() {
-      return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${this.id}.svg`;
-    },
   },
 };
 </script>
 
 <style scoped>
+
+.card, .card_image, .card_name, .card_url {
+  margin: 1em;
+}
+
+.card, .card_image {
+  overflow: hidden;
+}
+
 .card_image {
   grid-area: image;
-  margin: 0.5em 1em;
-  overflow: hidden;
+  width: 100%;
 }
 
 .card_name > span {
@@ -42,23 +44,23 @@ export default {
   font-size: 28px;
   text-transform: capitalize;
   font-family: "Fredoka One", cursive;
-  margin: 0 1em;
   color: #ffdf0c;
   text-shadow: -4px 2px 2px #386abb;
 }
 
 .card_url {
   grid-area: details;
-  margin: 0.5em 1em;
+  width: 100%;
 }
 
 .card {
+  align-items: center;
   background: #fefefe7c;
-  border-radius: 30px;
+  border-radius: 20px;
   display: grid;
-  padding: 1em 0;
+  padding: .5em;
   justify-items: center;
-  grid-template-rows: 80% 10% 10%;
+  grid-template-rows: auto 1fr 1fr;
   grid-template-columns: auto;
   grid-template-areas:
     "image"
@@ -67,7 +69,6 @@ export default {
   height: 450px;
   width: 300px;
   margin: 1em .5em;
-  overflow: hidden;
 }
 
 </style>

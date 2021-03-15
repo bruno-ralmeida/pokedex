@@ -15,10 +15,10 @@
       </p>
     </div>
     <div class="pokemon__image">
-      <image-responsive :url="imagePokemon" :title="pokemon.name" />
+      <image-responsive :url="pokemon.imageURL" :title="pokemon.name" />
     </div>
-    <div class="pokemons__details" v-show="(filterName) && (searchPokeName.length > 0)">
-      <pokemon-details :pokemons="searchPokeName"/>
+    <div class="pokemons__details" v-show="(filterName.trim())&& searchPokeName.length > 0">
+      <pokemon-details :pokemons="searchPokeName" />
     </div>
   </div>
 </template>
@@ -40,7 +40,6 @@ export default {
       pokemons: [],
       pokemonService: new PokemonService(this.axios),
       pokemon: "",
-      imagePokemon: "",
       filterName: "",
     };
   },
@@ -48,25 +47,33 @@ export default {
     this.pokemonService
       .list()
       .then((res) => {
-        this.pokemons = res.results;
-        let id = Math.floor(Math.random() * 24);
-        this.pokemon = this.pokemons[id];
-        this.imagePokemon = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${id + 1}.svg`;
+        this.pokemons = res;
+        this.pokemonRandom();
       })
       .catch((err) => console.error(err));
   },
   computed: {
     searchPokeName() {
+      if (!this.filterName.trim() > 0) return [];
       let exp = new RegExp(this.filterName.trim(), "i");
-      let pokemonsFilter = this.pokemons.filter((poke, index) =>{
-        if(exp.test(poke.name)){
-          let pokemon = poke;
-          pokemon.id = index+1;
-          return pokemon;
-        }
-      });
-
-      return pokemonsFilter;
+      const base = this.pokemons
+        .filter((pokemon) => exp.test(pokemon.name))
+        
+      return base.map(poke => {
+        this.pokemonService
+          .search(poke.id )
+          .then(res => {
+            poke.type = res.types[0].type.name 
+            return poke
+          })
+        return poke
+      })
+    },
+  },
+  methods: {
+    pokemonRandom() {
+      const id = Math.floor(Math.random() * 150);
+      return (this.pokemon = this.pokemons[id]);
     },
   },
 };
@@ -96,7 +103,6 @@ body {
   text-transform: capitalize;
 }
 
-
 .pokemons__details {
   grid-area: poke;
 }
@@ -114,18 +120,15 @@ body {
     "poke poke";
 }
 
-.pokemon__description > h2,
-p {
-  font-family: "Fredoka One", cursive;
-}
-.pokemon__description > h2 {
-  font-size: 42px;
-  color: #ffdf0c;
-  text-shadow: -4px 2px 2px #386abb;
-}
-
 .pokemon__description > p {
   font-size: 18px;
 }
 
+h2 {
+  font-family: "Fredoka One", cursive;
+  font-size: 42px;
+  color: #ffdf0c;
+  text-shadow: -4px 1px 2px #386abb;
+  margin: 0.5em 0;
+}
 </style>>
