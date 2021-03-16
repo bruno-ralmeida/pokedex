@@ -18,5 +18,5 @@ npm run build
 For detailed explanation on how things work, consult the [docs for vue-loader](http://vuejs.github.io/vue-loader).
 
 
-![alt text](https://github.com/bruno-ralmeida/blob/main/image-project/home.png?raw=true)
-![alt text](https://github.com/bruno-ralmeida/blob/main/image-project/result-list.png?raw=true)
+![Home](https://github.com/bruno-ralmeida/pokemon-search/blob/main/image-project/home.PNG?raw=true)
+![alt text](https://github.com/bruno-ralmeida/pokemon-search/blob/main/image-project/result-list.PNG?raw=true)
