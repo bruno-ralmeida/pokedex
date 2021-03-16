@@ -1,22 +1,36 @@
-# pokemon-search
+# pokemon-search 🔍
+### Iniciando em Vue.js  📖🧨
+  
+> Primeiro projeto em vue.js 🚀👩🏿‍🚀
 
-> A Vue.js project
+> Os dados estão sendo alimentados via [PokeAPI](https://pokeapi.co/)
 
-## Build Setup
+  
 
-``` bash
-# install dependencies
+## Build Setup 🔥
+
+```  bash
+
+# Instalar dependências
 npm install
 
-# serve with hot reload at localhost:8080
+# O server é iniciado localhost:8080 com recarga automática
 npm run dev
 
-# build for production with minification
+# Para criar o build de produção com arquivos minificados
+
 npm run build
+
 ```
 
-For detailed explanation on how things work, consult the [docs for vue-loader](http://vuejs.github.io/vue-loader).
-
+## Home ✨
+> Página Inicial com pokémon aleatório.
 
 ![Home](https://github.com/bruno-ralmeida/pokemon-search/blob/main/image-project/home.PNG?raw=true)
-![alt text](https://github.com/bruno-ralmeida/pokemon-search/blob/main/image-project/result-list.PNG?raw=true)
+
+  
+
+## Result ✨
+> Após preencher o campo de busca é gerada uma lista com todos os pokémons com os caracteres correspondentes. 
+
+![Result List](https://github.com/bruno-ralmeida/pokemon-search/blob/main/image-project/result-list.PNG?raw=true)
