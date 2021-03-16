@@ -18,7 +18,6 @@ npm install
 npm run dev
 
 # Para criar o build de produção com arquivos minificados
-
 npm run build
 
 ```
