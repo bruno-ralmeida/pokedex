@@ -5,3 +5,5 @@ export const routes = [
   { path: '/', component: Home , name: 'home'},
   { path: '/search', component: Details , name: 'detail'}
 ]
+
+

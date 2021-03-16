@@ -19,10 +19,7 @@
         <image-responsive :url="pokemon.imageURL" :title="pokemon.name" />
       </aside>
     </main>
-    <div
-      class="pokemons__details"
-      v-show="filterName.trim() && searchPokeName.length > 0"
-    >
+    <div class="pokemons__details" v-show="divStatus">
       <pokemon-details :pokemons="searchPokeName" />
     </div>
   </div>
@@ -45,6 +42,7 @@ export default {
       pokemons: [],
       pokemon: "",
       filterName: "",
+      visible: false,
     };
   },
   beforeCreate() {
@@ -68,11 +66,25 @@ export default {
       let exp = new RegExp(this.filterName.trim(), "i");
       return this.pokemons.filter((pokemon) => exp.test(pokemon.name));
     },
+
+    divStatus() {
+      this.visible = this.filterName.trim() && this.searchPokeName.length > 0;
+      if (this.visible) this.scrollToTop();
+      return this.visible;
+    },
   },
   methods: {
     pokemonRandom() {
-      const id = Math.floor(Math.random() * 150);
+      const id = Math.floor(Math.random() * 50);
       return (this.pokemon = this.pokemons[id]);
+    },
+    scrollToTop() {
+      let el = this.$children[2].$el;
+      if (el) {
+        setTimeout(function () {
+          el.scrollIntoView({ behavior: "smooth" });
+        }, 1);
+      }
     },
   },
 };

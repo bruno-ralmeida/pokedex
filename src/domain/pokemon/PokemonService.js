@@ -5,7 +5,7 @@ export default class PokemonService {
 
   list() {
     return this.axios
-      .get("?limit=649&offset=0")
+      .get("?limit=400&offset=0")
       .then(res =>
         res.data.results.map((pokemon, index) => {
           pokemon.id = index + 1;
