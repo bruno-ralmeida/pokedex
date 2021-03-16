@@ -50,15 +50,12 @@ export default {
     pokemonService
       .list()
       .then((res) => {
-        this.pokemons = res.map((poke) => {
-          pokemonService.searchDetail(poke.id).then((res) => {
-            poke.types = res.types;
-          });
-          return poke;
-        });
+        this.pokemons = res;
+        console.log(res)
         this.pokemonRandom();
       })
       .catch((err) => console.error(err));
+
   },
   computed: {
     searchPokeName() {
@@ -83,7 +80,7 @@ export default {
       if (el) {
         setTimeout(function () {
           el.scrollIntoView({ behavior: "smooth" });
-        }, 1);
+        }, 500);
       }
     },
   },

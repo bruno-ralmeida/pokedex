@@ -25,6 +25,7 @@ nav {
   padding: .5em 0;
   top: 0;
   z-index: 100;
+  width: 100%;
 }
 
 nav > img {

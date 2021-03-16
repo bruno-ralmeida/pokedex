@@ -9,6 +9,8 @@
 
 ## Build Setup 🔥
 
+> É necessário instalar o [NodeJs](https://nodejs.org/en/download/)
+
 ```  bash
 
 # Instalar dependências

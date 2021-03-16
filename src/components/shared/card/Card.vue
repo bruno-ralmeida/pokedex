@@ -58,12 +58,9 @@
         </svg>
 
         <transition name="card_fade">
-          <div v-show="visible">
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Impedit
-            cupiditate officia architecto eveniet hic earum ab ad quae optio nam
-            esse voluptatem, corporis totam rerum fugit temporibus id aspernatur
-            tempore.
-          </div>
+          <ul v-show="visible" v-for="stat of pokemon.stats">
+            <li>{{ stat.stat.name }} - {{ stat.base_stat }}</li>
+          </ul>
         </transition>
       </div>
     </div>
@@ -97,73 +94,73 @@ export default {
 
 <style scoped>
 .normal {
-  background: rgba(241, 241, 241, 0.9);
-  box-shadow: 2px 2px rgba(0, 0, 0, 0.2);
+  background: #C6C6A7;
 }
 .fire {
-  background: rgba(255, 0, 0, 0.9);
-  box-shadow: 2px 2px rgba(0, 0, 0, 0.5);
+  background: #F5AC78;
 }
 .water {
-  background: rgba(0, 0, 255, 0.9);
-  box-shadow: 2px 2px rgba(0, 0, 0, 0.5);
+  background: #9DB7F5;
 }
 .grass {
-  background: rgba(0, 128, 0, 0.9);
-  box-shadow: 2px 2px rgba(0, 0, 0, 0.5);
+  background: #A7DB8D;
 }
 .electric {
-  background: rgba(255, 255, 0, 0.9);
-  box-shadow: 2px 2px rgba(0, 0, 0, 0.5);
+  background: #FAE078
 }
 .ice {
-  background: rgba(173, 216, 230, 0.9);
-  box-shadow: 2px 2px rgba(0, 0, 0, 0.5);
+  background: #BCE6E6;
 }
-.poison,
+.poison {
+  background: #C183C1;
+}
 .fairy {
-  background: rgba(255, 192, 203, 0.9);
-  box-shadow: 2px 2px rgba(0, 0, 0, 0.5);
+  background: #FABDC9;
 }
 .psychic {
-  background: rgba(128, 0, 128, 0.9);
-  box-shadow: 2px 2px rgba(0, 0, 0, 0.5);
+ background: #FA92B2;
+}
+.physical {
+  background: #d96358;
 }
 .fighting {
-  background: rgba(139, 0, 0, 0.9);
-  box-shadow: 2px 2px rgba(0, 0, 0, 0.5);
+  background: #D67873;
 }
 .ground {
-  background: rgba(165, 42, 42, 0.9);
-  box-shadow: 2px 2px rgba(0, 0, 0, 0.5);
+  background: #EBD69D;
 }
 .rock {
-  background: rgba(128, 128, 128, 0.9);
-  box-shadow: 2px 2px rgba(0, 0, 0, 0.5);
+  background: #D1C17D;
 }
 .bug {
-  background: rgba(144, 238, 144, 0.9);
-  box-shadow: 2px 2px rgba(0, 0, 0, 0.5);
+  background: #C6D16E;
 }
 .flying {
-  background: rgba(0, 0, 128, 0.9);
-  box-shadow: 2px 2px rgba(0, 0, 0, 0.5);
+  background: #C6B7F5;
 }
 .ghost {
-  background: rgba(230, 230, 250, 0.9);
-  box-shadow: 2px 2px rgba(0, 0, 0, 0.5);
+  background: #A292BC;
 }
 .dragon {
-  background: rgba(255, 166, 0, 0.9);
-  box-shadow: 2px 2px rgba(0, 0, 0, 0.5);
+  background: #A27DFA
 }
 .steel {
-  background: rgba(192, 192, 192, 0.9);
-  box-shadow: 2px 2px rgba(0, 0, 0, 0.5);
+  background: #D1D1E0;
 }
 .dark {
-  background: rgba(0, 0, 0, 0.9);
-  box-shadow: 2px 2px rgba(0, 0, 0, 0.5);
+  background: #A29288
+}
+
+.special {
+  background: #83899a;
+}
+
+.status {
+  background: #aeabae;
+}
+
+.typeless {
+  background: #9DC1B7;
 }
 
 .menu {
@@ -207,8 +204,7 @@ export default {
   text-transform: capitalize;
   list-style: none;
   color: white;
-  font-weight: 400;
-  text-shadow: 2px 1px black;
+  text-shadow: -2px 0px 2px #000000cc;
 }
 .card_header > .card_image {
   grid-area: image;
@@ -243,7 +239,6 @@ export default {
 
 .card_name > p {
   font-size: 18px;
-  background: pink;
   background: #9c530070;
   padding: 0.325em;
   margin: 0.5em;
