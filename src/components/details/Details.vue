@@ -3,7 +3,7 @@
     <h2 class="detail_name">Result</h2>
     <div class="detail_main">
       <ul v-for="pokemon of pokemons" :key="pokemon.id">
-        <poke-card :pokemon="pokemon" />
+        <poke-card :pokemon="pokemon"/>
       </ul>
     </div>
   </div>
@@ -25,7 +25,7 @@ export default {
   border-radius: 20px;
   display: flex;
   flex-direction: column;
-  background: #cecece8c;
+  background: #fefefec4;
   border-radius: 10px;
   margin: 1.5em;
   padding: 1.5em;

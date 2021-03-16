@@ -8,10 +8,9 @@ export default class PokemonService {
       .get("?limit=649&offset=0")
       .then(res =>
         res.data.results.map((pokemon, index) => {
-          let pokemonBase = pokemon;
-          pokemonBase.id = index + 1;
-          pokemon.imageURL = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemonBase.id}.svg`;
-          return pokemonBase;
+          pokemon.id = index + 1;
+          pokemon.imageURL = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemon.id}.svg`;
+          return pokemon;
         })
       )
       .catch(err => {
@@ -22,7 +21,7 @@ export default class PokemonService {
       });
   }
 
-   search(id) {
+   searchDetail(id) {
     return  this.axios
       .get(`/${id}`)
       .then(res => res.data)

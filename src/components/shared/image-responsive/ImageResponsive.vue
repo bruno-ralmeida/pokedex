@@ -1,7 +1,5 @@
 <template>
-  <div class="image_content">
-    <img class="image_responsive" :src="url" :alt="title" />
-  </div>
+  <img class="image_responsive" :src="url" :alt="title" />
 </template>
 
 <script>
@@ -11,10 +9,8 @@ export default {
 </script>
 
 <style scoped>
-.image_content {
-  display: flex;
-  flex-direction: column-reverse;
+.image_responsive {
   width: 100%;
-  max-height: 85vh;
+  height: 100%;
 }
 </style>

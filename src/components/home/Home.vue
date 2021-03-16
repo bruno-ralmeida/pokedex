@@ -1,22 +1,24 @@
 <template>
-  <div class="main">
+  <div class="home">
     <menu-default
       class="menu"
       v-on:input.native="filterName = $event.target.value"
     />
-    <div class="pokemon__description">
-      <h2>Pokémon</h2>
-      <p>
-        Pokémon é uma série de jogos eletrônicos desenvolvidos pela Game Freak e
-        publicados pela Nintendo como parte da franquia de mídia Pokémon.
-        Lançado pela primeira vez em 1996 no Japão para o console Game Boy, a
-        principal série de jogos de RPGs, que continuou em cada geração em
-        portáteis da Nintendo.
-      </p>
-    </div>
-    <div class="pokemon__image">
-      <image-responsive :url="pokemon.imageURL" :title="pokemon.name" />
-    </div>
+    <main class="main">
+      <section class="pokemon__description">
+        <h2>Pokémon</h2>
+        <p>
+          Pokémon é uma série de jogos eletrônicos desenvolvidos pela Game Freak
+          e publicados pela Nintendo como parte da franquia de mídia Pokémon.
+          Lançado pela primeira vez em 1996 no Japão para o console Game Boy, a
+          principal série de jogos de RPGs, que continuou em cada geração em
+          portáteis da Nintendo.
+        </p>
+      </section>
+      <aside class="pokemon__image">
+        <image-responsive :url="pokemon.imageURL" :title="pokemon.name" />
+      </aside>
+    </main>
     <div
       class="pokemons__details"
       v-show="filterName.trim() && searchPokeName.length > 0"
@@ -41,19 +43,18 @@ export default {
   data() {
     return {
       pokemons: [],
-      pokemonService: new PokemonService(this.axios),
       pokemon: "",
       filterName: "",
     };
   },
-  created() {
-    this.pokemonService
+  beforeCreate() {
+    const pokemonService = new PokemonService(this.axios);
+    pokemonService
       .list()
       .then((res) => {
         this.pokemons = res.map((poke) => {
-          this.pokemonService.search(poke.id).then((res) => {
-            poke.types = res.types
-            return poke;
+          pokemonService.searchDetail(poke.id).then((res) => {
+            poke.types = res.types;
           });
           return poke;
         });
@@ -82,51 +83,44 @@ body {
   background: #fefefe
     linear-gradient(45deg, #fefefe 50%, #ff0000, #d30000 50.1%);
   background-attachment: fixed;
+  font-family: "Fredoka One", cursive;
 }
-.menu {
-  grid-area: header;
-  position: sticky;
+
+h2 {
+  font-size: 38px;
+  margin: 0.5em 0;
+}
+
+p {
+  font-size: 18px;
 }
 
 .pokemon__description {
-  grid-area: description;
+  max-width: 30vw;
   padding: 0 2em;
   text-align: justify;
 }
 
 .pokemon__image {
-  grid-area: image;
-}
-.pokemon__image > span {
-  text-transform: capitalize;
-}
-
-.pokemons__details {
-  grid-area: poke;
+  max-width: 70vw;
+  width: 100%;
+  height: 100%;
 }
 
 .main {
+  display: flex;
+  background-attachment: fixed;
   align-items: center;
   justify-content: center;
-  background-attachment: fixed;
+}
+
+.home {
   display: grid;
-  grid-template-rows: 1fr auto auto;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: auto;
+  grid-template-rows: 10vh 90vh auto;
   grid-template-areas:
-    "header header"
-    "description image"
-    "poke poke";
+    "menu"
+    "main"
+    "search";
 }
-
-.pokemon__description > p {
-  font-size: 18px;
-}
-
-h2 {
-  font-family: "Fredoka One", cursive;
-  font-size: 42px;
-  color: #ffdf0c;
-  text-shadow: -4px 1px 2px #386abb;
-  margin: 0.5em 0;
-}
-</style>>
+</style>
