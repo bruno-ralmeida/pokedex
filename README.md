@@ -32,4 +32,4 @@ npm run build
 ## Result ✨
 > Após preencher o campo de busca é gerada uma lista com todos os pokémons com os caracteres correspondentes. 
 
-![Result List](https://github.com/bruno-ralmeida/pokemon-search/blob/main/image-project/result-list.png?raw=true)
+![Result List](https://github.com/bruno-ralmeida/pokemon-search/blob/main/image-project/result-list.PNG?raw=true)
