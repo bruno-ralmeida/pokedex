@@ -16,11 +16,10 @@
 # Instalar dependências
 npm install
 
-# O server é iniciado localhost:8080 com recarga automática
+# O servidor é iniciado localhost:8080 com recarga automática
 npm run dev
 
 # Para criar o build de produção com arquivos minificados
-
 npm run build
 
 ```
