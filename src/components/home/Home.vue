@@ -93,6 +93,7 @@ body {
     linear-gradient(45deg, #fefefe 50%, #ff0000, #d30000 50.1%);
   background-attachment: fixed;
   font-family: "Fredoka One", cursive;
+  
 }
 
 h2 {
@@ -115,18 +116,25 @@ p {
   width: 100%;
   height: 100%;
 }
-
+.pokemons__details {
+  grid-area: search;
+}
 .main {
   display: flex;
   background-attachment: fixed;
   align-items: center;
   justify-content: center;
+  grid-area: main;
+}
+
+.menu {
+  grid-area: menu;
 }
 
 .home {
   display: grid;
   grid-template-columns: auto;
-  grid-template-rows: 10vh 90vh auto;
+  grid-template-rows: auto 90vh auto;
   grid-template-areas:
     "menu"
     "main"

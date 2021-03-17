@@ -9,10 +9,7 @@
         </ul>
       </div>
       <div class="card_image">
-        <span
-          class="rounded"
-          :class="pokemon.types[0].type.name || 'normal'"
-        ></span>
+        <span class="rounded" :class="pokemonType || 'normal'"></span>
         <poke-image :url="pokemon.imageURL" :title="pokemon.name" />
       </div>
     </div>
@@ -21,47 +18,23 @@
         <p>#{{ idFormated }}</p>
         <span>{{ pokemon.name }} </span>
       </div>
-      <div class="card_url">
-        <svg
-          @dblclick="visible = !visible"
-          xmlns="http://www.w3.org/2000/svg"
-          x="0px"
-          y="0px"
-          width="40"
-          height="40"
-          viewBox="0 0 172 172"
-          style="fill: #000000"
-        >
-          <g
-            fill="none"
-            fill-rule="nonzero"
-            stroke="none"
-            stroke-width="1"
-            stroke-linecap="butt"
-            stroke-linejoin="miter"
-            stroke-miterlimit="10"
-            stroke-dasharray=""
-            stroke-dashoffset="0"
-            font-family="none"
-            font-weight="none"
-            font-size="none"
-            text-anchor="none"
-            style="mix-blend-mode: normal"
-          >
-            <path d="M0,172v-172h172v172z" fill="none"></path>
-            <g fill="#000000">
-              <path
-                d="M123.49063,63.02188l-37.49063,37.49063l-37.49062,-37.49062c-1.6125,-1.6125 -4.16562,-1.6125 -5.64375,0c-1.6125,1.6125 -1.6125,4.16562 0,5.64375l40.3125,40.3125c0.80625,0.80625 1.88125,1.20938 2.82187,1.20938c0.94062,0 2.01563,-0.40313 2.82187,-1.20938l40.3125,-40.3125c1.6125,-1.6125 1.6125,-4.16563 0,-5.64375c-1.6125,-1.6125 -4.03125,-1.6125 -5.64375,0z"
-              ></path>
-            </g>
-          </g>
-        </svg>
-
-        <transition name="card_fade">
-          <ul v-show="visible" v-for="stat of pokemon.stats">
+      <div class="card_stats">
+        <input type="checkbox" :id="pokemonId" />
+        <label id="lblDown" :for="pokemonId"> 
+          <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="40" height="40" viewBox="0 0 172 172" style="fill: #000000"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal" > <path d="M0,172v-172h172v172z" fill="none"></path> <g fill="#000000"> <path d="M123.49063,63.02188l-37.49063,37.49063l-37.49062,-37.49062c-1.6125,-1.6125 -4.16562,-1.6125 -5.64375,0c-1.6125,1.6125 -1.6125,4.16562 0,5.64375l40.3125,40.3125c0.80625,0.80625 1.88125,1.20938 2.82187,1.20938c0.94062,0 2.01563,-0.40313 2.82187,-1.20938l40.3125,-40.3125c1.6125,-1.6125 1.6125,-4.16563 0,-5.64375c-1.6125,-1.6125 -4.03125,-1.6125 -5.64375,0z" ></path> </g> </g> </svg>
+        </label>
+        <label :for="pokemonId" id="lblUp"> 
+              <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                width="30" height="30"
+                viewBox="0 0 172 172"
+                style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#333333"><path d="M85.91042,51.6c-1.48937,0.02375 -2.91104,0.62615 -3.96406,1.67969l-57.33333,57.33333c-1.49776,1.43802 -2.1011,3.57339 -1.57731,5.58258c0.52378,2.00919 2.09283,3.57824 4.10202,4.10202c2.00919,0.52378 4.14456,-0.07955 5.58258,-1.57732l53.27969,-53.27969l53.27969,53.27969c1.43802,1.49778 3.5734,2.10113 5.5826,1.57735c2.0092,-0.52378 3.57826,-2.09284 4.10204,-4.10204c0.52378,-2.0092 -0.07957,-4.14458 -1.57735,-5.5826l-57.33333,-57.33333c-1.09692,-1.09743 -2.59177,-1.70345 -4.14323,-1.67969z"></path></g></g></svg>
+        </label>
+        <div class="card_stats__content">
+          <ul v-for="stat of pokemon.stats" :key="stat.stat.name">
             <li>{{ stat.stat.name }} - {{ stat.base_stat }}</li>
           </ul>
-        </transition>
+          
+        </div>
       </div>
     </div>
   </div>
@@ -83,122 +56,34 @@ export default {
     idFormated() {
       return this.pokemon.id.toString().padStart(3, "0");
     },
-  },
-  methods: {
-    teste() {
-      alert("Aqui");
+    pokemonType() {
+      return this.pokemon.types[0].type.name;
+    },
+    pokemonId() {
+      return `stats${this.pokemon.id}`;
     },
   },
 };
 </script>
 
 <style scoped>
-.normal {
-  background: #C6C6A7;
-}
-.fire {
-  background: #F5AC78;
-}
-.water {
-  background: #9DB7F5;
-}
-.grass {
-  background: #A7DB8D;
-}
-.electric {
-  background: #FAE078
-}
-.ice {
-  background: #BCE6E6;
-}
-.poison {
-  background: #C183C1;
-}
-.fairy {
-  background: #FABDC9;
-}
-.psychic {
- background: #FA92B2;
-}
-.physical {
-  background: #d96358;
-}
-.fighting {
-  background: #D67873;
-}
-.ground {
-  background: #EBD69D;
-}
-.rock {
-  background: #D1C17D;
-}
-.bug {
-  background: #C6D16E;
-}
-.flying {
-  background: #C6B7F5;
-}
-.ghost {
-  background: #A292BC;
-}
-.dragon {
-  background: #A27DFA
-}
-.steel {
-  background: #D1D1E0;
-}
-.dark {
-  background: #A29288
-}
-
-.special {
-  background: #83899a;
-}
-
-.status {
-  background: #aeabae;
-}
-
-.typeless {
-  background: #9DC1B7;
-}
-
-.menu {
-  grid-area: menu;
-  position: sticky;
-}
-
 .card {
   background: whitesmoke;
   border-radius: 20px;
   display: flex;
   flex-direction: column;
-  height: 100%;
-  max-height: 400px;
-  margin: 1em 0.5em;
-  width: 300px;
+  margin: 0.5em;
+  padding: 1em 0.5em;
+  width: 350px;
 }
 
-.rounded {
-  border-radius: 50%;
-  height: 200px;
-  width: 200px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-40%, -50%);
-  z-index: -100;
-}
-.card_type {
+.card_header > .card_type {
   grid-area: types;
-  display: flex;
-  flex-direction: column;
-  justify-self: center;
-  align-self: flex-start;
 }
+
 .card_type > ul {
   margin: 0.5em;
-  padding: 0.5em;
+  padding: 0.25em;
   border-radius: 100px;
   text-align: center;
   text-transform: capitalize;
@@ -206,35 +91,33 @@ export default {
   color: white;
   text-shadow: -2px 0px 2px #000000cc;
 }
+
 .card_header > .card_image {
   grid-area: image;
-}
-
-.card_header {
-  border-radius: 20px;
-  display: grid;
-  margin: 0.5em;
-  align-items: center;
-  grid-template-columns: 1fr 70%;
-  grid-template-rows: auto;
-  grid-template-areas: "types image";
-  height: 100%;
   overflow: hidden;
+  height: 250px;
   position: relative;
   z-index: 99;
 }
+
+.card_header {
+  display: grid;
+  grid-template-columns: 100px auto;
+  grid-template-rows: auto;
+  grid-template-areas: "types image";
+}
+
 .card_main {
   display: flex;
   flex-direction: column;
-  align-items: stretch;
+  align-items: center;
 }
-
 .card_name {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-transform: capitalize;
-  font-size: 36px;
+  font-size: 24px;
 }
 
 .card_name > p {
@@ -246,17 +129,146 @@ export default {
   align-self: flex-end;
 }
 
-.card_url {
-  align-self: center;
+.card_stats {
+  text-align: center;
 }
 
-.card_fade-enter,
-.card_fade-leave-active {
-  opacity: 0;
+.card_stats input,#lblUp {
+  display: none;
 }
 
-.card_fade-enter-active,
-.card_fade-leave-active {
-  transition: opacity 0.5s;
+.card_stats label {
+  cursor: pointer;
+}
+
+[id^="stats"]:checked ~ .card_stats__content {
+  height: 150px;
+  transition: 0.2s ease-in;
+}
+
+[id^="stats"]:checked ~ #lblDown {
+  display: none;
+}
+
+[id^="stats"]:checked ~ #lblUp {
+  display: block;
+}
+
+.card_stats__content {
+  height: 0;
+  transition: 0.1s ease-out;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.card_stats__content ul{
+  list-style: none;
+}
+
+.card_stats__content li{
+  text-transform: capitalize;
+}
+
+
+.rounded {
+  border-radius: 50%;
+  height: 200px;
+  width: 200px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-40%, -50%);
+  z-index: -100;
+}
+
+/* POKÉMONS TYPE COLORS */
+.bug {
+  background: #c6d16e;
+}
+
+.dark {
+  background: #a29288;
+}
+
+.dragon {
+  background: #a27dfa;
+}
+
+.electric {
+  background: #fae078;
+}
+
+.fairy {
+  background: #fabdc9;
+}
+
+.fighting {
+  background: #d67873;
+}
+
+.fire {
+  background: #f5ac78;
+}
+
+.flying {
+  background: #c6b7f5;
+}
+
+.grass {
+  background: #a7db8d;
+}
+
+.ghost {
+  background: #a292bc;
+}
+
+.ground {
+  background: #ebd69d;
+}
+
+.ice {
+  background: #bce6e6;
+}
+
+.normal {
+  background: #c6c6a7;
+}
+
+.poison {
+  background: #c183c1;
+}
+
+.psychic {
+  background: #fa92b2;
+}
+
+.physical {
+  background: #d96358;
+}
+
+.rock {
+  background: #d1c17d;
+}
+
+.steel {
+  background: #d1d1e0;
+}
+
+.special {
+  background: #83899a;
+}
+
+.status {
+  background: #aeabae;
+}
+
+.typeless {
+  background: #9dc1b7;
+}
+
+.water {
+  background: #9db7f5;
 }
 </style>

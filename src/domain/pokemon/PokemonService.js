@@ -15,7 +15,7 @@ export default class PokemonService {
             pokemon.types = res.types;
             pokemon.stats = res.stats;
             
-            return poke;
+            return pokemon;
           });
 
           return pokemon;
