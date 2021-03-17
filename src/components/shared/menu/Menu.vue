@@ -16,16 +16,19 @@ export default {};
 
 <style scoped>
 nav {
-   background: #fefefe
-    linear-gradient(45deg, #fefefe 50%, #ff0000, #d30000 50.1%) no-repeat fixed;
+  background: #fefefe
+    linear-gradient(45deg, #fefefe 50%, #ff0000, #CC0000 50.1%) no-repeat fixed;
   display: flex;
   justify-content: space-between;
   align-items: center;
   position: sticky;
-  padding: 0 .5em;
   top: 0;
   z-index: 100;
   width: auto;
+}
+
+img, input {
+  margin: 0 .25em;
 }
 
 nav > img {
@@ -46,5 +49,15 @@ input:focus {
   width: 220px;
   transition: 0.25s ease-out;
   outline: none;
+}
+
+@media only screen and (max-width: 800px) {
+  nav > img {
+    height: 30px;
+    width: auto;
+  }
+  input:focus {
+    width: 140px;
+  }
 }
 </style>

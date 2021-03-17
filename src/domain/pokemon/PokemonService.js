@@ -5,16 +5,15 @@ export default class PokemonService {
 
   list() {
     return this.axios
-      .get("?limit=400&offset=0")
+      .get("?limit=649&offset=0")
       .then(res =>
         res.data.results.map((pokemon, index) => {
           pokemon.id = index + 1;
           pokemon.imageURL = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemon.id}.svg`;
-
+          //Pegando os detalhes do pokemon
           this.searchDetail(pokemon.id).then(res => {
             pokemon.types = res.types;
             pokemon.stats = res.stats;
-            
             return pokemon;
           });
 

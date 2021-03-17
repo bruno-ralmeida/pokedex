@@ -1,8 +1,10 @@
 <template>
   <div class="detail">
     <div class="detail_main">
-      <ul v-for="pokemon of pokemons" :key="pokemon.id">
-        <poke-card :pokemon="pokemon" />
+      <ul>
+        <li v-for="pokemon of pokemons" :key="pokemon.id">
+          <poke-card :pokemon="pokemon" />
+        </li>
       </ul>
     </div>
   </div>
@@ -14,7 +16,7 @@ export default {
   components: {
     "poke-card": Card,
   },
-  props: ["pokemons"],  
+  props: ["pokemons"],
 };
 </script>
 
@@ -25,13 +27,13 @@ export default {
   flex-direction: column;
   background: #fefefec4;
   border-radius: 10px;
-  margin: 1em 0;
-  padding: 4rem 0;
+  margin: 4em 0;
   align-items: center;
 }
-.detail_main {
+.detail_main > ul{
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+  margin: 5em 0;
 }
 </style>

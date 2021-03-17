@@ -51,11 +51,9 @@ export default {
       .list()
       .then((res) => {
         this.pokemons = res;
-        console.log(res)
         this.pokemonRandom();
       })
       .catch((err) => console.error(err));
-
   },
   computed: {
     searchPokeName() {
@@ -88,31 +86,22 @@ export default {
 </script>
 
 <style>
-body {
-  background: #fefefe
-    linear-gradient(45deg, #fefefe 50%, #ff0000, #d30000 50.1%);
-  background-attachment: fixed;
-  font-family: "Fredoka One", cursive;
-  
-}
 
-h2 {
+.pokemon__description > h2 {
   font-size: 38px;
   margin: 0.5em 0;
 }
 
-p {
+.pokemon__description > p {
   font-size: 18px;
 }
 
 .pokemon__description {
   max-width: 30vw;
-  padding: 0 2em;
   text-align: justify;
 }
 
 .pokemon__image {
-  max-width: 70vw;
   width: 100%;
   height: 100%;
 }
@@ -120,9 +109,9 @@ p {
   grid-area: search;
 }
 .main {
-  display: flex;
-  background-attachment: fixed;
   align-items: center;
+  background-attachment: fixed;
+  display: flex;
   justify-content: center;
   grid-area: main;
 }
@@ -134,10 +123,25 @@ p {
 .home {
   display: grid;
   grid-template-columns: auto;
-  grid-template-rows: auto 90vh auto;
+  grid-template-rows: 8vh 92vh auto;
   grid-template-areas:
     "menu"
     "main"
     "search";
+  padding: 0 1em;
+}
+
+@media only screen and (max-width: 800px) {
+  .home {
+    grid-template-rows: 10vh auto auto;
+  }
+  .main {
+    flex-direction: column-reverse;
+
+  }
+  .pokemon__description,
+  .pokemon__image {
+    max-width: 98vw;
+  }
 }
 </style>
