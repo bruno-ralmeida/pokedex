@@ -113,6 +113,7 @@ export default {
   background-attachment: fixed;
   display: flex;
   justify-content: center;
+  padding: 0 .5em;
   grid-area: main;
 }
 
@@ -122,13 +123,11 @@ export default {
 
 .home {
   display: grid;
-  grid-template-columns: auto;
   grid-template-rows: 8vh 92vh auto;
   grid-template-areas:
     "menu"
     "main"
     "search";
-  padding: 0 1em;
 }
 
 @media only screen and (max-width: 800px) {
