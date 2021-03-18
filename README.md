@@ -1,4 +1,4 @@
-# pokemon-search 🔍
+# 🔴 Pokédex 🔍
 ### Iniciando em Vue.js  📖🧨
   
 > Primeiro projeto em vue.js 🚀👩🏿‍🚀
