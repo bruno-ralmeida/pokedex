@@ -14,13 +14,13 @@
 import Card from "../shared/card/Card";
 export default {
   components: {
-    "poke-card": Card,
+    "poke-card": Card
   },
-  props: ["pokemons"],
+  props: ["pokemons"]
 };
 </script>
 
-<style >
+<style>
 .detail {
   border-radius: 20px;
   display: flex;
@@ -28,9 +28,10 @@ export default {
   background: #fefefec4;
   border-radius: 10px;
   margin: 4em 0;
+  padding: 0 50px;
   align-items: center;
 }
-.detail_main > ul{
+.detail_main > ul {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;

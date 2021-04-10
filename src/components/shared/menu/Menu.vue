@@ -17,18 +17,21 @@ export default {};
 <style scoped>
 nav {
   background: #fefefe
-    linear-gradient(45deg, #fefefe 50%, #ff0000, #CC0000 50.1%) no-repeat fixed;
+    linear-gradient(45deg, #fefefe 50%, #ff0000, #cc0000 50.1%) no-repeat fixed;
+  box-shadow: 0px 0px 10px #44475a83;
+  align-items: center;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  padding: 0 1.5em;
   position: sticky;
   top: 0;
-  z-index: 100;
   width: auto;
+  z-index: 100;
 }
 
-img, input {
-  margin: 0 .25em;
+img,
+input {
+  margin: 0 0.25em;
 }
 
 nav > img {
@@ -38,17 +41,17 @@ nav > img {
 
 nav > input {
   border-radius: 20px;
-  width: 140px;
-  transition: 0.2s ease-in;
   border: 1px solid #86868641;
-  padding: 0 0.5em;
   height: 30px;
+  padding: 0 1em;
+  transition: 0.2s ease-in;
+  width: 140px;
 }
 
 input:focus {
-  width: 220px;
-  transition: 0.25s ease-out;
   outline: none;
+  transition: 0.25s ease-out;
+  width: 220px;
 }
 
 @media only screen and (max-width: 800px) {

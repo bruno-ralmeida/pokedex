@@ -1,10 +1,10 @@
 <template>
-  <div class="home">
+  <section class="home">
     <menu-default
       class="menu"
       v-on:input.native="filterName = $event.target.value"
     />
-    <main class="main">
+    <section class="main">
       <section class="pokemon__description">
         <h2>Pokémon</h2>
         <p>
@@ -18,11 +18,11 @@
       <aside class="pokemon__image">
         <image-responsive :url="pokemon.imageURL" :title="pokemon.name" />
       </aside>
-    </main>
+    </section>
     <div class="pokemons__details" v-show="divStatus">
       <pokemon-details :pokemons="searchPokeName" />
     </div>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -35,38 +35,38 @@ export default {
   components: {
     "menu-default": Menu,
     "image-responsive": ImageResponsive,
-    "pokemon-details": Details,
+    "pokemon-details": Details
   },
   data() {
     return {
       pokemons: [],
       pokemon: "",
       filterName: "",
-      visible: false,
+      visible: false
     };
   },
   beforeCreate() {
     const pokemonService = new PokemonService(this.axios);
     pokemonService
       .list()
-      .then((res) => {
+      .then(res => {
         this.pokemons = res;
         this.pokemonRandom();
       })
-      .catch((err) => console.error(err));
+      .catch(err => console.error(err));
   },
   computed: {
     searchPokeName() {
       if (!this.filterName.trim() > 0) return [];
       let exp = new RegExp(this.filterName.trim(), "i");
-      return this.pokemons.filter((pokemon) => exp.test(pokemon.name));
+      return this.pokemons.filter(pokemon => exp.test(pokemon.name));
     },
 
     divStatus() {
       this.visible = this.filterName.trim() && this.searchPokeName.length > 0;
       if (this.visible) this.scrollToTop();
       return this.visible;
-    },
+    }
   },
   methods: {
     pokemonRandom() {
@@ -76,20 +76,20 @@ export default {
     scrollToTop() {
       let el = this.$children[2].$el;
       if (el) {
-        setTimeout(function () {
+        setTimeout(function() {
           el.scrollIntoView({ behavior: "smooth" });
         }, 500);
       }
-    },
-  },
+    }
+  }
 };
 </script>
 
 <style>
-
 .pokemon__description > h2 {
   font-size: 38px;
   margin: 0.5em 0;
+  align-self: flex-start;
 }
 
 .pokemon__description > p {
@@ -97,24 +97,33 @@ export default {
 }
 
 .pokemon__description {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+  line-height: 25px;
   max-width: 30vw;
+  padding: 0 1.5em;
   text-align: justify;
+  width: auto;
 }
 
 .pokemon__image {
-  width: 100%;
   height: 100%;
+  width: 100%;
 }
+
 .pokemons__details {
   grid-area: search;
 }
-.main {
+section.main {
   align-items: center;
   background-attachment: fixed;
   display: flex;
-  justify-content: center;
-  padding: 0 .5em;
   grid-area: main;
+  justify-content: center;
+  padding: 1em 2em;
 }
 
 .menu {
@@ -136,7 +145,6 @@ export default {
   }
   .main {
     flex-direction: column-reverse;
-
   }
   .pokemon__description,
   .pokemon__image {
