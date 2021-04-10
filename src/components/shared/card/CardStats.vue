@@ -88,15 +88,9 @@
 </template>
 
 <script>
-import Up from "../../../assets/images/up.svg";
-import Down from "../../../assets/images/down.svg";
-
 export default {
   props: ["pokemon"],
-  components: {
-    "arrow-up": Up,
-    "arrow-down": Down
-  },
+
   computed: {
     pokemonId() {
       return `stats${this.pokemon.id}`;
