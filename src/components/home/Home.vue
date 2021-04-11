@@ -87,9 +87,10 @@ export default {
 
 <style>
 .pokemon__description > h2 {
-  font-size: 38px;
-  margin: 0.5em 0;
   align-self: flex-start;
+  font-size: 38px;
+  font-weight: bold;
+  margin: 0.5em 0;
 }
 
 .pokemon__description > p {

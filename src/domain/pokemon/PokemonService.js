@@ -10,7 +10,7 @@ export default class PokemonService {
         res.data.results.map((pokemon, index) => {
           pokemon.id = index + 1;
           pokemon.imageURL = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemon.id}.svg`;
-          //Pegando os detalhes do pokemon
+
           this.searchDetail(pokemon.id).then(res => {
             pokemon.types = res.types;
             pokemon.stats = res.stats;

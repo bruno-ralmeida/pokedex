@@ -8,6 +8,7 @@ export default {};
 
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap");
 
 * {
   box-sizing: border-box;
@@ -149,6 +150,6 @@ body {
   background: #fefefe
     linear-gradient(45deg, #fefefe 50%, #ff0000, #cc0000 50.1%);
   background-attachment: fixed;
-  font-family: "Fredoka One", cursive;
+  font-family: "Poppins", sans-serif;
 }
 </style>
